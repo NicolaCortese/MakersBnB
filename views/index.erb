@@ -1,6 +1,13 @@
 <% if @user.nil?%>
   <h1> Welcome to MakersBnB </h1>
   <h3><%=flash[:notice]%></h3>
+
+  <form action="/login" method="get">
+    <input type = "submit" value = "Login">
+  </form>
+
+  <br>
+
   <h3> Sign Up </h3>
 
   <form action="/sign-up" method="post">
@@ -28,7 +35,7 @@
 <% else %>
   <h1>Welcome, <%=@user.name%></h1>
   <form action = "/log-out" method = 'post'>
-  <input type = "submit" value = "Log Out" >
+  <input type = "submit" value = "Log out" >
   </form>
 
 <% end %>

@@ -1,11 +1,49 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/patrykokpara/Desktop/Projects/Makersbnb/spec/feature/sign_in_spec.rb": {
+      "/Users/jamesmooney/Projects/Makersbnb/spec/feature/log_in_spec.rb": {
         "lines": [
           1,
           1,
           1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
           null,
           1,
           1,
@@ -16,7 +54,7 @@
           null
         ]
       },
-      "/Users/patrykokpara/Desktop/Projects/Makersbnb/spec/feature/signup_route_spec.rb": {
+      "/Users/jamesmooney/Projects/Makersbnb/spec/feature/signup_route_spec.rb": {
         "lines": [
           null,
           null,
@@ -47,6 +85,6 @@
         ]
       }
     },
-    "timestamp": 1647882082
+    "timestamp": 1647885030
   }
 }

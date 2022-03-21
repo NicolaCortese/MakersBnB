@@ -36,5 +36,23 @@ class Makersbnb < Sinatra::Base
     redirect '/'
   end
 
+  get '/login' do
+    erb :login
+  end
+
+  post '/logging-in' do
+    @user = User.find_by(username: params[:username])
+    if @user.nil?
+      flash[:notice]= "No such username"
+      redirect '/login'
+    elsif @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect '/'
+    else
+      flash[:notice]= "Your password is incorrect"
+      redirect  '/login'
+    end
+  end
+
   run! if app_file == $PROGRAM_NAME
 end
