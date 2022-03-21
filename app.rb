@@ -14,6 +14,7 @@ class Makersbnb < Sinatra::Base
   enable :sessions
 
   get '/' do
+    @user = User.find_by_id(session[:user_id])
     erb :index
   end
 
@@ -25,7 +26,8 @@ class Makersbnb < Sinatra::Base
       name: params[:name]
     )
     @user.save
-    redirect '/listings'
+    session[:user_id] = @user.id
+    redirect '/'
   end
 
   run! if app_file == $PROGRAM_NAME

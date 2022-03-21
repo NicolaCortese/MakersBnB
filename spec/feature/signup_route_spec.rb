@@ -26,5 +26,6 @@ feature 'Checking the homepage' do
     click_button 'Sign up'
 
     expect(page).to have_content 'Welcome, Bobby'
+    expect(current_path).to eq '/'
   end
 end
