@@ -30,5 +30,11 @@ class Makersbnb < Sinatra::Base
     redirect '/'
   end
 
+  post '/log-out' do
+    session.clear
+    flash[:notice]= "Successfully logged out"
+    redirect '/'
+  end
+
   run! if app_file == $PROGRAM_NAME
 end

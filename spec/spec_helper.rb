@@ -13,6 +13,7 @@ require 'rspec'
 require 'simplecov'
 require 'simplecov-console'
 require 'sinatra/flash'
+require_relative 'web_helper'
 
 RSpec.configure do | config |
   config.before(:each) do 
