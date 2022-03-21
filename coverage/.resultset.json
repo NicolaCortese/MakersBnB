@@ -1,9 +1,20 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/nicolacortese/Projects/week5/Makersbnb/spec/feature/signup_route_spec.rb": {
+      "/Users/chrislovell/Desktop/Projects/Makersbnb/spec/feature/signup_route_spec.rb": {
         "lines": [
           null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
           1,
           1,
           1,
@@ -13,6 +24,6 @@
         ]
       }
     },
-    "timestamp": 1647872335
+    "timestamp": 1647873548
   }
 }
