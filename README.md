@@ -64,14 +64,14 @@ I want users to be able to send me requests to book for that same night
 
 ## MVP 
 ```
-As a user
-So that I can manage bookings
-I want to be able to sign in
-```
-```
 As a User
 So that I can store my details
 I want to be able to sign up to Makersbnb
+```
+```
+As a user
+So that I can manage bookings
+I want to be able to sign in
 ```
 ```
 As a User
