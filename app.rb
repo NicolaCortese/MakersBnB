@@ -55,5 +55,10 @@ class Makersbnb < Sinatra::Base
     end
   end
 
+  get '/listing/:id' do
+    @listing = Listing.find_by_id(params[:id])
+    erb :listings
+  end
+
   run! if app_file == $PROGRAM_NAME
 end

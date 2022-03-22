@@ -1,0 +1,14 @@
+<h3><%=flash[:notice]%></h3>
+      <%= @listing.name %>
+      <!-- IMAGE OF LISTING -->
+      <%= @listing.description %>
+      <%= @listing.price %>
+      <br>
+      <!-- Available From: ONCE FUNCTION ADDED
+      listing.start_date ONCE FUNCTION ADDED
+      to
+      listing.end_date ONCE FUNCTION ADDED -->
+      <form method="post" action="/booking/<%=@listing.id%> ">
+        <input type="submit" value="Request to book">
+<     /form>
+<% end %>
