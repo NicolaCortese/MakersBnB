@@ -53,6 +53,17 @@ class Makersbnb < Sinatra::Base
       redirect  '/login'
     end
   end
+  
+  post '/booking/:id' do
+    @booking = Booking.create(
+      user_id: session[:user_id], 
+      space_id: params[:id]
+    )
+    @booking.save
+      
+    flash[:notice]= "Booking successfull!"
+    redirect '/'
+  end
 
   run! if app_file == $PROGRAM_NAME
 end
