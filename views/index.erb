@@ -38,4 +38,20 @@
   <input type = "submit" value = "Log out" >
   </form>
 
+  <br>
+
+  <ul>
+  <% @listing.each do |listing| %>
+    <li>
+        <%= listing.name %>
+        <!-- listing.tag -->
+        <%= listing.price %>
+        <br>
+        <form method="get" action="/lisitings/<%= listings.id %>">
+          <input type="submit" value="View Listing">
+        </form>
+    </li>
+  <% end %>
+  </ul>
+
 <% end %>

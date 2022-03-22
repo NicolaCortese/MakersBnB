@@ -15,6 +15,7 @@ class Makersbnb < Sinatra::Base
 
   get '/' do
     @user = User.find_by_id(session[:user_id])
+    @lisiting = Listing.all
     erb :index
   end
 
