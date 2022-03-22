@@ -5,6 +5,7 @@ require 'sinatra/reloader'
 require 'sinatra/flash'
 require './lib/user'
 require './lib/space'
+require './lib/booking'
 
 class Makersbnb < Sinatra::Base
   configure :development do
@@ -57,11 +58,11 @@ class Makersbnb < Sinatra::Base
   end
   
   post '/booking/:id' do
-    # @booking = Booking.create(
-    #   user_id: session[:user_id], 
-    #   space_id: params[:id]
-    # )
-    # @booking.save
+    @booking = Booking.create(
+      user_id: session[:user_id], 
+      space_id: params[:id]
+    )
+    @booking.save
       
     flash[:notice]= "Booking successfull!"
     redirect '/'
