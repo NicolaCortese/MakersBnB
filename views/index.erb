@@ -37,5 +37,24 @@
   <form action = "/log-out" method = 'post'>
   <input type = "submit" value = "Log out" >
   </form>
+  <form action = "/new-space" method = 'get'>
+  <input type = "submit" value = "List a Space" >
+  </form>
+
+  <br>
+
+  <ul>
+  <% @space.each do |space| %>
+    <li>
+        <%= space.space_name %>
+        <!-- space.tag -->
+        £<%= space.price %>
+        <br>
+        <form method="get" action="/listing/<%=space.id %>">
+          <input type="submit" value="View Listing">
+        </form>
+    </li>
+  <% end %>
+  </ul>
 
 <% end %>

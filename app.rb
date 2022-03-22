@@ -4,6 +4,7 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require 'sinatra/flash'
 require './lib/user'
+require './lib/space'
 
 class Makersbnb < Sinatra::Base
   configure :development do
@@ -15,6 +16,7 @@ class Makersbnb < Sinatra::Base
 
   get '/' do
     @user = User.find_by_id(session[:user_id])
+    @space = Space.all
     erb :index
   end
 
@@ -62,6 +64,28 @@ class Makersbnb < Sinatra::Base
     @booking.save
       
     flash[:notice]= "Booking successfull!"
+    redirect '/'
+  end
+
+  get '/listing/:id' do
+    @space = Space.find_by_id(params[:id])
+    erb :listing
+  end 
+
+  get '/new-space' do
+    erb(:list_space)
+  end
+
+  post '/listing-space' do 
+    @space = Space.create(
+      space_name: params[:space_name],
+      description: params[:description],
+      price: params[:price],
+      availability_from: params[:availability_from],
+      availability_to: params[:availability_to],
+      user_id: session[:user_id]
+    )
+    @space.save 
     redirect '/'
   end
 
