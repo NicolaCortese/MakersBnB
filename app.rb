@@ -16,6 +16,7 @@ class Makersbnb < Sinatra::Base
 
   get '/' do
     @user = User.find_by_id(session[:user_id])
+    @lisiting = Listing.all
     erb :index
   end
 
@@ -55,6 +56,9 @@ class Makersbnb < Sinatra::Base
     end
   end
 
+  get '/listing/:id' do
+    @space = Space.find_by_id(params[:id])
+    erb :listing
   get '/new-space' do
     erb(:list_space)
   end
