@@ -18,6 +18,7 @@ require_relative 'web_helper'
 RSpec.configure do | config |
   config.before(:each) do 
     User.delete_all
+    Space.delete_all
   end
 end
 

@@ -46,11 +46,11 @@
   <ul>
   <% @space.each do |space| %>
     <li>
-        <%= @space.name %>
-        <!-- @space.tag -->
-        <%= @space.price %>
+        <%= space.space_name %>
+        <!-- space.tag -->
+        £<%= space.price %>
         <br>
-        <form method="get" action="/listing/<%=@space.id %>">
+        <form method="get" action="/listing/<%=space.id %>">
           <input type="submit" value="View Listing">
         </form>
     </li>
