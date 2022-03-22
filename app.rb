@@ -77,6 +77,12 @@ class Makersbnb < Sinatra::Base
     erb(:list_space)
   end
 
+  get '/my-spaces' do
+    @user = User.find_by_id(session[:user_id])
+    @space = Space.where("user_id = #{session[:user_id]}")
+    erb(:my_spaces)
+  end
+
   post '/listing-space' do 
     @space = Space.create(
       space_name: params[:space_name],

@@ -1,0 +1,14 @@
+<h3> Here is a list of <%= @user.name %>'s spaces: </h3>
+<ul>
+  <% @space.each do |space| %>
+    <li>
+        <%= space.space_name %>
+        <!-- space.tag -->
+        £<%= space.price %>
+        <br>
+        <form method="get" action="/listing/<%=space.id %>">
+          <input type="submit" value="View Listing">
+        </form>
+    </li>
+  <% end %>
+  </ul>
