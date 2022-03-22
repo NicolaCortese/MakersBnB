@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/jamesmooney/Projects/Makersbnb/spec/feature/log_in_spec.rb": {
+      "/Users/christianpinna/Projects/Makersbnb/spec/feature/log_in_spec.rb": {
         "lines": [
           1,
           1,
@@ -54,7 +54,7 @@
           null
         ]
       },
-      "/Users/jamesmooney/Projects/Makersbnb/spec/feature/signup_route_spec.rb": {
+      "/Users/christianpinna/Projects/Makersbnb/spec/feature/signup_route_spec.rb": {
         "lines": [
           null,
           null,
@@ -83,8 +83,21 @@
           null,
           null
         ]
+      },
+      "/Users/christianpinna/Projects/Makersbnb/spec/feature/spaces_spec.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          null,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1647885030
+    "timestamp": 1647951874
   }
 }

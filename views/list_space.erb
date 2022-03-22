@@ -1,0 +1,29 @@
+<h1>Welcome, <%=@name%></h1>
+<h1> List a Space</h1>
+
+<form action="/listing-space" method="post">
+    <label for="name">
+    Name
+    <input type="text" name="space_name">
+    </label>
+    <br>
+    <label for="description">
+    Description
+    <input type="text" name="description">
+    </label>
+    <br>
+    <label for="price">
+    Price per night
+    <input type="text" name="price">
+    </label>
+    <br>
+    <label for="availability_from">
+    Availability from
+    <input type="availability_from" name="availability_from">
+    <br>
+    <label for="availability_to">
+    Availability to
+    <input type="availability_to" name="availability_to">
+    <br>
+    <input type="submit" value="List my Space">
+  </form>
