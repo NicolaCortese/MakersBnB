@@ -66,6 +66,26 @@ As a renter
 So I know who I am renting from
 I want to see who listed a property
 ```
+```
+As a property owner
+So that I can track my properties
+I want to be able to view all my listings
+```
+```
+As a property owner
+So that I can manage my listings
+I want to be able to edit and delete my listings
+```
+```
+As a renter
+So that I know the status of my booking requests
+I want to be able to see if I have  had my bookings confirmed
+```
+```
+As a renter
+So that I know what bookings I have
+I want to be able to see a list of my bookings
+```
 
 ## MVP 
 ```
