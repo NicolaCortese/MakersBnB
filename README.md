@@ -61,6 +61,11 @@ As a property owner
 Until I have confirmed a booking
 I want users to be able to send me requests to book for that same night
 ```
+```
+As a renter
+So I know who I am renting from
+I want to see who listed a property
+```
 
 ## MVP 
 ```
