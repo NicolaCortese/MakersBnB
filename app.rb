@@ -56,7 +56,7 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/listing/:id' do
-    @listing = Listing.find_by_id(params[:id])
+    @space = Space.find_by_id(params[:id])
     erb :listings
   end
 

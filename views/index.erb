@@ -41,13 +41,13 @@
   <br>
 
   <ul>
-  <% @listing.each do |listing| %>
+  <% @space.each do |space| %>
     <li>
-        <%= listing.name %>
-        <!-- listing.tag -->
-        <%= listing.price %>
+        <%= @space.name %>
+        <!-- @space.tag -->
+        <%= @space.price %>
         <br>
-        <form method="get" action="/lisitings/<%= listings.id %>">
+        <form method="get" action="/lisiting/<%=@space.id %>">
           <input type="submit" value="View Listing">
         </form>
     </li>
