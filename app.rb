@@ -57,7 +57,7 @@ class Makersbnb < Sinatra::Base
 
   get '/listing/:id' do
     @space = Space.find_by_id(params[:id])
-    erb :listings
+    erb :listing
   end
 
   run! if app_file == $PROGRAM_NAME
