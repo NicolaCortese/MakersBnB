@@ -19,11 +19,22 @@
     <br>
     <label for="availability_from">
     Availability from
-    <input type="availability_from" name="availability_from">
+    <input type="date" id="availability_from" name="availability_from"
+          value="<%=@today%>"
+          min="<%=@today%>" max="2022-12-31">
     <br>
     <label for="availability_to">
     Availability to
-    <input type="availability_to" name="availability_to">
+    <input type="date" id="availability_to" name="availability_to"
+          value="<%=@tomorrow%>"
+          min="<%=@tomorrow%>" max="2022-12-31">
     <br>
     <input type="submit" value="List my Space">
   </form>
+
+  
+<!--<label for="start">Start date:</label>
+
+<input type="date" id="start" name="trip-start"
+       value="2018-07-22"
+       min="2018-01-01" max="2018-12-31">-->
