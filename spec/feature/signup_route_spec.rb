@@ -17,7 +17,7 @@ feature 'Checking the homepage' do
     expect(page).to have_button 'Sign up'
   end
 
-  scenario 'Signing up redirects to listing page with personalised welcome message' do
+  scenario 'Signing up redirects to spaces page with personalised welcome message' do
     
     sign_up
     expect(page).to have_content 'Welcome, Bobby'
