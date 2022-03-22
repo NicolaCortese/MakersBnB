@@ -83,6 +83,25 @@ class Makersbnb < Sinatra::Base
     erb(:my_spaces)
   end
 
+  get '/edit-space/:space_id' do
+    
+    @space = Space.find_by_id(params[:space_id])
+    erb(:edit_space)
+  end
+
+  post '/edit-space/:space_id' do
+    #understand how to work with the update method of activerecord
+    Space.update(
+      params[:space_id], 
+      space_name: params[:space_name],
+      description: params[:description],
+      price: params[:price],
+      availability_from: params[:availability_from],
+      availability_to: params[:availability_to]
+      )
+    redirect '/my-spaces'
+  end
+
   post '/listing-space' do 
     @space = Space.create(
       space_name: params[:space_name],

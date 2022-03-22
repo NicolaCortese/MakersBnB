@@ -6,8 +6,8 @@
         <!-- space.tag -->
         £<%= space.price %>
         <br>
-        <form method="get" action="/listing/<%=space.id %>">
-          <input type="submit" value="View Listing">
+        <form action="/edit-space/<%= space.id %>">
+          <input type="submit" value="Edit">
         </form>
     </li>
   <% end %>
