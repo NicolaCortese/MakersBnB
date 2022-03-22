@@ -1,13 +1,14 @@
       <h3> <%= @space.space_name %> </h3>
       <!-- IMAGE OF LISTING -->
       <%= @space.description %>
+      <br>
       £<%= @space.price %>
       <br>
       Available From:
-      @space.availability_from
+      <%= @space.availability_from %>
       to
-      @space.availability_to
+      <%= @space.availability_to %>
       <br>
-      <form method="post" action="/booking/<%=@space.id%> ">
+      <form action="/booking/<%=@space.id%>" method="post">
         <input type="submit" value="Request to book">
       </form>
