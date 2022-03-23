@@ -91,6 +91,8 @@ class Makersbnb < Sinatra::Base
     @space = Space.find_by_id(params[:space_id])
     @today = Date.today.strftime("%Y-%m-%d")
     @tomorrow = Date.tomorrow.strftime("%Y-%m-%d")
+    @current_start_date = @space.availability_from
+    @current_end_date = @space.availability_to
     erb(:edit_space)
   end
 
@@ -103,6 +105,10 @@ class Makersbnb < Sinatra::Base
       availability_from: params[:availability_from],
       availability_to: params[:availability_to]
       )
+
+      @start_date = @space.availability_from.to_date
+      @end_date = @space.availability_to.to_date
+      
     flash[:notice]= "Space has been successfully edited"
     redirect '/my-spaces'
   end
