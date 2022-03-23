@@ -1,0 +1,18 @@
+<h3> Here is a list of <%= @user.name %>'s spaces: </h3>
+<h3><%=flash[:notice]%></h3>
+<ul>
+  <% @space.each do |space| %>
+    <li>
+        <%= space.space_name %>
+        <!-- space.tag -->
+        £<%= space.price %>
+        <br>
+        <form action="/edit-space/<%= space.id %>">
+          <input type="submit" value="Edit">
+        </form>
+        <form action="/delete-space/<%= space.id %>" method='post'>
+          <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this item?');">
+        </form>
+    </li>
+  <% end %>
+  </ul>
