@@ -1,13 +1,24 @@
       <h3> <%= @space.space_name %> </h3>
       <!-- IMAGE OF LISTING -->
+      Property description:
+      <br>
       <%= @space.description %>
+      <br>
+      <br>
+      Price:
       <br>
       £<%= @space.price %>
       <br>
+      <br>
       Available From:
+      <br>
       <%= @space.availability_from %>
-      to
+      <br>
+      <br>
+      Until:
+      <br>
       <%= @space.availability_to %>
+      <br>
       <br>
       <form action="/booking/<%=@space.id%>" method="post">
         <input type="submit" value="Request to book">
