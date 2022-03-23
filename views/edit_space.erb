@@ -1,6 +1,8 @@
 
 <h1> Edit your Space</h1>
 
+<h3><%=flash[:notice]%></h3>
+
 <form action="/edit-space/<%= @space.id %>" method="post">
     <label for="name">
     Name

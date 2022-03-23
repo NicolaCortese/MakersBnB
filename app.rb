@@ -97,7 +97,15 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/edit-space/:space_id' do
-    Space.update(
+    @start_date = params[:availability_from].to_date
+    @end_date = params[:availability_to].to_date
+
+    if @end_date <= @start_date
+      flash[:notice]= "Your end date cannot be before your start date. Please try again."
+      redirect "/edit-space/#{params[:space_id]}"
+
+    else
+      Space.update(
       params[:space_id], 
       space_name: params[:space_name],
       description: params[:description],
@@ -105,12 +113,10 @@ class Makersbnb < Sinatra::Base
       availability_from: params[:availability_from],
       availability_to: params[:availability_to]
       )
-
-      @start_date = @space.availability_from.to_date
-      @end_date = @space.availability_to.to_date
       
-    flash[:notice]= "Space has been successfully edited"
-    redirect '/my-spaces'
+      flash[:notice]= "Space has been successfully edited"
+      redirect '/my-spaces'
+    end
   end
   
   post '/delete-space/:space_id' do
