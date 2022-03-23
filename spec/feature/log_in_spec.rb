@@ -2,7 +2,7 @@
 
 feature 'Log in and out' do
   scenario 'user can access login page' do
-    sign_up
+    sign_up_bobby
     click_button 'Log out'
     click_button 'Login'
     expect(page).to have_field 'username'
@@ -11,7 +11,7 @@ feature 'Log in and out' do
   end
 
   scenario 'can fill in details and reach home' do
-    sign_up
+    sign_up_bobby
     click_button 'Log out'
     click_button 'Login'
     fill_in 'username',	with: 'Bob'
@@ -31,7 +31,7 @@ feature 'Log in and out' do
   end
 
   scenario 'user is informed they entered password wrong' do
-    sign_up
+    sign_up_bobby
     click_button 'Log out'
     click_button 'Login'
     fill_in 'username',	with: 'Bob'
@@ -41,7 +41,7 @@ feature 'Log in and out' do
   end
 
   scenario 'user can log out' do
-    sign_up
+    sign_up_bobby
     click_button 'Log out'
     expect(page).to have_content 'Successfully logged out'
   end
