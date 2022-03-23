@@ -38,11 +38,12 @@ feature 'Testing the /my-spaces' do
     fill_in 'space_name', with: 'A Soggy Cave'
     click_button 'Save'
     expect(current_path).to eq '/my-spaces'
+    expect(page).to have_content 'Space has been successfully edited'
     expect(page).to have_content 'A Soggy Cave'
     expect(page).to_not have_content 'A Damp Cave'
-
+    
   end
-
+  
   scenario 'user can delete their space' do
     sign_up_bobby
     create_space_damp_cave
@@ -52,7 +53,8 @@ feature 'Testing the /my-spaces' do
     #prompted with a message "are you sure?"
     
     expect(current_path).to eq "/my-spaces"
+    expect(page).to have_content 'Space has been successfully deleted'
     expect(page).to_not have_content 'A Damp Cave'
-
+    
   end
 end

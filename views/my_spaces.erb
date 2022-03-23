@@ -1,4 +1,5 @@
 <h3> Here is a list of <%= @user.name %>'s spaces: </h3>
+<h3><%=flash[:notice]%></h3>
 <ul>
   <% @space.each do |space| %>
     <li>

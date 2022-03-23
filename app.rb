@@ -101,11 +101,13 @@ class Makersbnb < Sinatra::Base
       availability_from: params[:availability_from],
       availability_to: params[:availability_to]
       )
+    flash[:notice]= "Space has been successfully edited"
     redirect '/my-spaces'
   end
   
   post '/delete-space/:space_id' do
     Space.delete(params[:space_id])
+    flash[:notice]= "Space has been successfully deleted"
     redirect '/my-spaces'
   end
 
