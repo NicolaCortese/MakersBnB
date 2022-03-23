@@ -6,6 +6,14 @@
     <%= Space.find_by_id(booking.space_id).space_name %> 
   </a>
   <br>
+  <% if booking.accepted == nil %>
+     Status Pending
+  <% elsif booking.accepted == true %>
+    Status Approved
+  <% else %>
+    Status Denied
+  <% end %>
+  <br>
   Booking request sent at: <%= booking.created_at.strftime("%d/%m/%Y %k:%M") %>
   <br>
   <br>
@@ -15,6 +23,13 @@
   <a href="/listing/<%=booking.space_id %>">
     <%= Space.find_by_id(booking.space_id).space_name %>
   </a>
+  <br>
+    Requested by <%= User.find_by_id(booking.user_id).username %>
+  <br>
+  <form action="/accept-or-reject/<%= booking.id %>" method="post">
+    <input type="submit" name="accept" value="Accept">
+    <input type="submit" name="decline" value="Decline">
+  </form>
   <br>
   Booking request received at: <%= booking.created_at.strftime("%d/%m/%Y %k:%M") %>
   <br>
