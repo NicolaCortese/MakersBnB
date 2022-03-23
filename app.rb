@@ -36,7 +36,7 @@ class Makersbnb < Sinatra::Base
 
   post '/log-out' do
     session.clear
-    flash[:notice]= "Successfully logged out"
+    flash[:notice] = 'Successfully logged out'
     redirect '/'
   end
 
@@ -47,32 +47,32 @@ class Makersbnb < Sinatra::Base
   post '/logging-in' do
     @user = User.find_by(username: params[:username])
     if @user.nil?
-      flash[:notice]= "No such username"
+      flash[:notice] = 'No such username'
       redirect '/login'
     elsif @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect '/'
     else
-      flash[:notice]= "Your password is incorrect"
-      redirect  '/login'
+      flash[:notice] = 'Your password is incorrect'
+      redirect '/login'
     end
   end
-  
+
   post '/booking/:id' do
     @booking = Booking.create(
-      user_id: session[:user_id], 
+      user_id: session[:user_id],
       space_id: params[:id]
     )
     @booking.save
-      
-    flash[:notice]= "Booking successfull!"
+
+    flash[:notice] = 'Booking successfull!'
     redirect '/'
   end
 
   get '/listing/:id' do
     @space = Space.find_by_id(params[:id])
     erb :listing
-  end 
+  end
 
   get '/new-space' do
     @today = Date.today.strftime("%Y-%m-%d")
@@ -120,8 +120,17 @@ class Makersbnb < Sinatra::Base
       availability_to: params[:availability_to],
       user_id: session[:user_id]
     )
-    @space.save 
+    @space.save
     redirect '/'
+  end
+
+  get '/requests' do
+    @bookings = Booking.all
+    @user_bookings = @bookings.where(user_id: session[:user_id])
+    @user_spaces = Space.where(user_id: session[:user_id])
+    @user_requests = @bookings.where(space_id: @user_spaces)
+    
+    erb :requests
   end
 
   run! if app_file == $PROGRAM_NAME

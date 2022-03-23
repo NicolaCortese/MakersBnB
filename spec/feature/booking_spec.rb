@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 feature 'Booking' do
   scenario 'lets us book a space' do
     sign_up_bobby

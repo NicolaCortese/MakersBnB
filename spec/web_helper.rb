@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 def sign_up_bobby
 visit('/')
