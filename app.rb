@@ -114,7 +114,7 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/listing-space' do 
-    @space = Space.create(
+    @space = Space.new(
       space_name: params[:space_name],
       description: params[:description],
       price: params[:price],
@@ -122,8 +122,16 @@ class Makersbnb < Sinatra::Base
       availability_to: params[:availability_to],
       user_id: session[:user_id]
     )
-    @space.save
-    redirect '/'
+    @start_date = @space.availability_from.to_date
+    @end_date = @space.availability_to.to_date
+
+    if @end_date <= @start_date
+      flash[:notice]= "Your end date cannot be before your start date. Please try again."
+      redirect '/new-space'
+    else
+      @space.save
+      redirect '/'
+    end
   end
 
   get '/requests' do

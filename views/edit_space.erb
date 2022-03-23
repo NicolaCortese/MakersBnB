@@ -1,32 +1,29 @@
 
 <h1> Edit your Space</h1>
 
-<label for='spaceName'>Name:</label>
-    <br>
-    <input type='text' id='space_Name'> %>
-    <br>
-    <br>
-    Price:
-    <br>
-    <input type="text" name="price" placeholder="£"> 
+<form action="/edit-space/<%= @space.id %>" method="post">
+    <label for="name">
+    Name
+    <input type="text" name="space_name" value="<%= @space.space_name %>">
     </label>
     <br>
+    <label for="description">
+    Description
+    <input type="text" name="description" value="<%= @space.description %>" >
+    </label>
+    <br>
+    <label for="price">
+    Price per night
+    <input type="text" name="price" value="<%= @space.price %>" >
+    </label>
     <br>
     <label for="availability_from">
     Availability from
-    <br>
-    <input type="date" id="availability_from" name="availability_from"
-          value="<%=@today%>"
-          min="<%=@today%>" max="2022-12-31">
-    <br>
+    <input type="availability_from" name="availability_from" value="<%= @space.availability_from %>" >
     <br>
     <label for="availability_to">
     Availability to
-    <br>
-    <input type="date" id="availability_to" name="availability_to"
-          value="<%=@tomorrow%>"
-          min="<%=@tomorrow%>" max="2022-12-31">
-    <br>
+    <input type="availability_to" name="availability_to" value="<%= @space.availability_to %>" >
     <br>
     <input type="submit" value="Save">
   </form>
