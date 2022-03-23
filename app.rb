@@ -89,11 +89,23 @@ class Makersbnb < Sinatra::Base
   get '/edit-space/:space_id' do
     
     @space = Space.find_by_id(params[:space_id])
+    @today = Date.today.strftime("%Y-%m-%d")
+    @tomorrow = Date.tomorrow.strftime("%Y-%m-%d")
+    @current_start_date = @space.availability_from
+    @current_end_date = @space.availability_to
     erb(:edit_space)
   end
 
   post '/edit-space/:space_id' do
-    Space.update(
+    @start_date = params[:availability_from].to_date
+    @end_date = params[:availability_to].to_date
+
+    if @end_date <= @start_date
+      flash[:notice]= "Your end date cannot be before your start date. Please try again."
+      redirect "/edit-space/#{params[:space_id]}"
+
+    else
+      Space.update(
       params[:space_id], 
       space_name: params[:space_name],
       description: params[:description],
@@ -101,8 +113,10 @@ class Makersbnb < Sinatra::Base
       availability_from: params[:availability_from],
       availability_to: params[:availability_to]
       )
-    flash[:notice]= "Space has been successfully edited"
-    redirect '/my-spaces'
+      
+      flash[:notice]= "Space has been successfully edited"
+      redirect '/my-spaces'
+    end
   end
   
   post '/delete-space/:space_id' do
@@ -112,7 +126,7 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/listing-space' do 
-    @space = Space.create(
+    @space = Space.new(
       space_name: params[:space_name],
       description: params[:description],
       price: params[:price],
@@ -120,8 +134,16 @@ class Makersbnb < Sinatra::Base
       availability_to: params[:availability_to],
       user_id: session[:user_id]
     )
-    @space.save
-    redirect '/'
+    @start_date = @space.availability_from.to_date
+    @end_date = @space.availability_to.to_date
+
+    if @end_date <= @start_date
+      flash[:notice]= "Your end date cannot be before your start date. Please try again."
+      redirect '/new-space'
+    else
+      @space.save
+      redirect '/'
+    end
   end
 
   get '/requests' do

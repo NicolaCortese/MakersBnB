@@ -1,6 +1,8 @@
 
 <h1> Edit your Space</h1>
 
+<h3><%=flash[:notice]%></h3>
+
 <form action="/edit-space/<%= @space.id %>" method="post">
     <label for="name">
     Name
@@ -19,11 +21,18 @@
     <br>
     <label for="availability_from">
     Availability from
-    <input type="availability_from" name="availability_from" value="<%= @space.availability_from %>" >
+    <br>
+    <input type="date" id="availability_from" name="availability_from"
+          value="<%=@current_start_date%>"
+          min="<%=@today%>" max="2022-12-31">
+    <br>
     <br>
     <label for="availability_to">
     Availability to
-    <input type="availability_to" name="availability_to" value="<%= @space.availability_to %>" >
+    <br>
+    <input type="date" id="availability_to" name="availability_to"
+          value="<%=@current_end_date%>"
+          min="<%=@tomorrow%>" max="2022-12-31">
     <br>
     <input type="submit" value="Save">
   </form>
