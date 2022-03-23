@@ -89,6 +89,8 @@ class Makersbnb < Sinatra::Base
   get '/edit-space/:space_id' do
     
     @space = Space.find_by_id(params[:space_id])
+    @today = Date.today.strftime("%Y-%m-%d")
+    @tomorrow = Date.tomorrow.strftime("%Y-%m-%d")
     erb(:edit_space)
   end
 

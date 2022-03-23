@@ -12,11 +12,12 @@
       <br>
       Available From:
       <br>
-      <%= @space.availability_from %>
+      <%= @space.availability_from.split("-").reverse.join("-") %>
       <br>
       <br>
       Until:
-      <%= @space.availability_to %>
+      <br>
+      <%= @space.availability_to.split("-").reverse.join("-") %>
       <br>
       <br>
       <form action="/booking/<%=@space.id%>" method="post">
