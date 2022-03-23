@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'date'
 require 'sinatra/base'
 require 'sinatra/reloader'
 require 'sinatra/flash'
@@ -74,6 +75,8 @@ class Makersbnb < Sinatra::Base
   end 
 
   get '/new-space' do
+    @today = Date.today.strftime("%Y-%m-%d")
+    @tomorrow = Date.tomorrow.strftime("%Y-%m-%d")
     erb(:list_space)
   end
 

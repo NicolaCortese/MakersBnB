@@ -1,29 +1,53 @@
-<h1>Welcome, <%=@name%></h1>
 <h1> List a Space</h1>
 
 <form action="/listing-space" method="post">
     <label for="name">
-    Name
+    Name:
+    <br>
     <input type="text" name="space_name">
     </label>
     <br>
+    <br>
     <label for="description">
-    Description
+    Description:
+    <br>
     <input type="text" name="description">
     </label>
     <br>
+    <br>
     <label for="price">
-    Price per night
-    <input type="text" name="price">
+    Price per night:
+    <br>
+<%# 
+    <label for='firstName'>First Name:</label>
+    <input type='text' id='firstName' placeholder='First name'> %>
+
+    <input type="text" name="price" placeholder="£"> 
     </label>
+    <br>
     <br>
     <label for="availability_from">
     Availability from
-    <input type="availability_from" name="availability_from">
+    <br>
+    <input type="date" id="availability_from" name="availability_from"
+          value="<%=@today%>"
+          min="<%=@today%>" max="2022-12-31">
+    <br>
     <br>
     <label for="availability_to">
     Availability to
-    <input type="availability_to" name="availability_to">
+    <br>
+    <input type="date" id="availability_to" name="availability_to"
+          value="<%=@tomorrow%>"
+          min="<%=@tomorrow%>" max="2022-12-31">
+    <br>
     <br>
     <input type="submit" value="List my Space">
   </form>
+
+  
+<!--<label for="start">Start date:</label>
+
+<input type="date" id="start" name="trip-start"
+       value="2018-07-22"
+       min="2018-01-01" max="2018-12-31">-->
