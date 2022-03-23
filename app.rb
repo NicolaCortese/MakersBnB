@@ -90,7 +90,6 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/edit-space/:space_id' do
-    #understand how to work with the update method of activerecord
     Space.update(
       params[:space_id], 
       space_name: params[:space_name],
@@ -99,6 +98,11 @@ class Makersbnb < Sinatra::Base
       availability_from: params[:availability_from],
       availability_to: params[:availability_to]
       )
+    redirect '/my-spaces'
+  end
+  
+  post '/delete-space/:space_id' do
+    Space.delete(params[:space_id])
     redirect '/my-spaces'
   end
 

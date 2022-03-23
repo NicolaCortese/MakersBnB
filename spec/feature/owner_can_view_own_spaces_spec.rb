@@ -21,7 +21,7 @@ feature 'Testing the /my-spaces' do
     expect(page).to have_content "Taj Mahal"
   end
   
-  scenario 'user can edit their bookings' do
+  scenario 'user can edit their space' do
     sign_up_bobby
     create_space_damp_cave
     space_1 = Space.all.first.id
@@ -39,6 +39,19 @@ feature 'Testing the /my-spaces' do
     click_button 'Save'
     expect(current_path).to eq '/my-spaces'
     expect(page).to have_content 'A Soggy Cave'
+    expect(page).to_not have_content 'A Damp Cave'
+
+  end
+
+  scenario 'user can delete their space' do
+    sign_up_bobby
+    create_space_damp_cave
+    space_1 = Space.all.first.id
+    click_button 'View my spaces'
+    click_button 'Delete'
+    #prompted with a message "are you sure?"
+    
+    expect(current_path).to eq "/my-spaces"
     expect(page).to_not have_content 'A Damp Cave'
 
   end
