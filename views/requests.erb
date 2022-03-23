@@ -1,0 +1,22 @@
+<h1> MakersBnB: <small>Requests</small></h1>
+
+<h3> Requests Made </h3>
+<% @user_bookings.order(created_at: :desc).each do |booking| %>
+  <a href="/listing/<%=booking.space_id %>">
+    <%= Space.find_by_id(booking.space_id).space_name %> 
+  </a>
+  <br>
+  Booking request sent at: <%= booking.created_at.strftime("%d/%m/%Y %k:%M") %>
+  <br>
+  <br>
+<% end %>
+<h3> Requests Received </h3>
+<% @user_requests.each do |booking| %>
+  <a href="/listing/<%=booking.space_id %>">
+    <%= Space.find_by_id(booking.space_id).space_name %>
+  </a>
+  <br>
+  Booking request received at: <%= booking.created_at.strftime("%d/%m/%Y %k:%M") %>
+  <br>
+  <br>
+<% end %>

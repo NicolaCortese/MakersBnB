@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 feature 'Log in and out' do
   scenario 'user can access login page' do
     sign_up
@@ -38,12 +40,9 @@ feature 'Log in and out' do
     expect(page).to have_content 'Your password is incorrect'
   end
 
-
-
   scenario 'user can log out' do
     sign_up
     click_button 'Log out'
-    expect(page).to have_content "Successfully logged out"
+    expect(page).to have_content 'Successfully logged out'
   end
 end
-

@@ -36,12 +36,14 @@
   <h1>Welcome, <%=@user.name%></h1>
   <h3><%=flash[:notice]%></h3>
   <form action = "/log-out" method = 'post'>
-  <input type = "submit" value = "Log out" >
+    <input type = "submit" value = "Log out" >
   </form>
   <form action = "/new-space" method = 'get'>
-  <input type = "submit" value = "List a Space" >
+    <input type = "submit" value = "List a Space" >
   </form>
-
+  <form action = "/requests" method = 'get'>
+    <input type = "submit" value = "Requests" >
+  </form>
   <br>
 
   <ul>

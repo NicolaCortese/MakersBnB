@@ -18,7 +18,6 @@ feature 'Checking the homepage' do
   end
 
   scenario 'Signing up redirects to spaces page with personalised welcome message' do
-    
     sign_up
     expect(page).to have_content 'Welcome, Bobby'
     expect(current_path).to eq '/'
