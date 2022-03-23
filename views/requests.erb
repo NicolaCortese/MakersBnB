@@ -19,19 +19,23 @@
   <br>
 <% end %>
 <h3> Requests Received </h3>
-<% @user_requests.each do |booking| %>
+<% @user_requests.order(created_at: :asc).each do |booking| %>
   <a href="/listing/<%=booking.space_id %>">
     <%= Space.find_by_id(booking.space_id).space_name %>
   </a>
   <br>
     Requested by <%= User.find_by_id(booking.user_id).username %>
-  <br>
+    at: <%= booking.created_at.strftime("%d/%m/%Y %k:%M") %>
+  <% if booking.accepted == nil %>
   <form action="/accept-or-reject/<%= booking.id %>" method="post">
-    <input type="submit" name="accept" value="Accept">
-    <input type="submit" name="decline" value="Decline">
+    <input type="submit" name="outcome" value="Accept">
+    <input type="submit" name="outcome" value="Decline">
   </form>
-  <br>
-  Booking request received at: <%= booking.created_at.strftime("%d/%m/%Y %k:%M") %>
+  <% elsif booking.accepted == true %>
+    <p style="color: green"> This booking has been accepted! </p>
+  <% else %>
+    <p style="color: red"> This booking has been denied! </p>
+  <% end %>
   <br>
   <br>
 <% end %>

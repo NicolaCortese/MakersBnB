@@ -133,5 +133,14 @@ class Makersbnb < Sinatra::Base
     erb :requests
   end
 
+  post '/accept-or-reject/:booking_id' do
+    if params[:outcome] == "Accept"
+      Booking.update(params[:booking_id], accepted: true)
+    else
+      Booking.update(params[:booking_id], accepted: false)
+    end
+    redirect '/requests'
+  end
+
   run! if app_file == $PROGRAM_NAME
 end

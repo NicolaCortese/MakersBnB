@@ -56,7 +56,7 @@ feature 'Requests' do
     expect(page).to have_content 'Status Pending'
   end
 
-  scenario "Able to accept or decline requests to book my property" do
+  scenario "Able to accept requests to book my property" do
     sign_up_bobby
     create_space_damp_cave
     click_button 'Log out'
@@ -69,9 +69,47 @@ feature 'Requests' do
     fill_in 'password', with: 'Bob1'
     click_button 'Log in'
     click_button 'Requests'
-
+    
     expect(page).to have_button 'Accept'
+    
+    click_button 'Accept'
+    visit('/') #this has to be changed when navigation tools are implemented
+    click_button 'Log out'
+    click_button 'Login'
+    fill_in 'username', with: 'Bab'
+    fill_in 'password', with: 'Bab1'
+    click_button 'Log in'
+    click_button 'Requests'
+    expect(page).to have_content 'Status Approved'
+
+  end
+
+  scenario "Able to accept requests to book my property" do
+    sign_up_bobby
+    create_space_damp_cave
+    click_button 'Log out'
+    sign_up_babdul
+    click_button 'View Listing' 
+    click_button 'Request to book'
+    click_button 'Log out'
+    click_button 'Login'
+    fill_in 'username', with: 'Bob'
+    fill_in 'password', with: 'Bob1'
+    click_button 'Log in'
+    click_button 'Requests'
+    
     expect(page).to have_button 'Decline'
+    
+    click_button 'Decline'
+    visit('/') #this has to be changed when navigation tools are implemented
+    click_button 'Log out'
+    click_button 'Login'
+    fill_in 'username', with: 'Bab'
+    fill_in 'password', with: 'Bab1'
+    click_button 'Log in'
+    click_button 'Requests'
+    expect(page).to have_content 'Status Denied'
+
   end
 
 
