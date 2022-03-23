@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'date'
 require 'sinatra/base'
 require 'sinatra/reloader'
 require 'sinatra/flash'
@@ -74,7 +75,40 @@ class Makersbnb < Sinatra::Base
   end 
 
   get '/new-space' do
+    @today = Date.today.strftime("%Y-%m-%d")
+    @tomorrow = Date.tomorrow.strftime("%Y-%m-%d")
     erb(:list_space)
+  end
+
+  get '/my-spaces' do
+    @user = User.find_by_id(session[:user_id])
+    @space = Space.where("user_id = #{session[:user_id]}")
+    erb(:my_spaces)
+  end
+
+  get '/edit-space/:space_id' do
+    
+    @space = Space.find_by_id(params[:space_id])
+    erb(:edit_space)
+  end
+
+  post '/edit-space/:space_id' do
+    Space.update(
+      params[:space_id], 
+      space_name: params[:space_name],
+      description: params[:description],
+      price: params[:price],
+      availability_from: params[:availability_from],
+      availability_to: params[:availability_to]
+      )
+    flash[:notice]= "Space has been successfully edited"
+    redirect '/my-spaces'
+  end
+  
+  post '/delete-space/:space_id' do
+    Space.delete(params[:space_id])
+    flash[:notice]= "Space has been successfully deleted"
+    redirect '/my-spaces'
   end
 
   post '/listing-space' do 
