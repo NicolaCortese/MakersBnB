@@ -46,6 +46,9 @@
       <!-- IMAGE OF LISTING -->
       <div id= "window">
       <p>Property description:</p>
+      <h3> <%= @space.space_name %> </h3>
+      <h4> <%= flash[:notice] %> </h4>
+      Property description:
       <br>
       <%= @space.description %>
       <br>
@@ -68,5 +71,14 @@
       </div>
 
       <form action="/booking/<%=@space.id%>" method="post">
+        <br>
+        Night to book:
+        <br>
+        <input type="date" id="booked_from" name="booked_from"
+         value="<%=@start_date%>"
+         min="<%=@start_date%>" max="<%=@end_date%>">
+        <br>
+        <br>
         <input id = "RTB" type="submit" value="Request to book">
+
       </form>

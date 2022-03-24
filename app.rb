@@ -59,18 +59,27 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/booking/:id' do
-    @booking = Booking.create(
+    @booking = Booking.new(
       user_id: session[:user_id],
-      space_id: params[:id]
+      space_id: params[:id],
+      booked_from: params[:booked_from]
     )
-    @booking.save
 
-    flash[:notice] = 'Booking successfull!'
-    redirect '/'
+    if !Booking.where(space_id: params[:id], booked_from: params[:booked_from], accepted: true).empty?
+      flash[:notice] = 'This space is not avaialable on that date'
+      redirect "/listing/#{params[:id]}"
+    else 
+      flash[:notice] = 'Booking successfull!'
+      @booking.save
+      redirect '/'
+    end
+    
   end
 
   get '/listing/:id' do
     @space = Space.find_by_id(params[:id])
+    @start_date = @space.availability_from
+    @end_date = @space.availability_to
     erb :listing
   end
 
@@ -137,7 +146,10 @@ class Makersbnb < Sinatra::Base
     @start_date = @space.availability_from.to_date
     @end_date = @space.availability_to.to_date
 
-    if @end_date <= @start_date
+    if params[:space_name] == "" || params[:description] == "" || params[:price] == ""
+      flash[:notice]= "Please complete all fields to list your space"
+      redirect '/new-space'
+    elsif @end_date <= @start_date
       flash[:notice]= "Your end date cannot be before your start date. Please try again."
       redirect '/new-space'
     else
@@ -147,21 +159,38 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/requests' do
-    @bookings = Booking.all
-    @user_bookings = @bookings.where(user_id: session[:user_id])
+    @user_bookings = Booking.where(user_id: session[:user_id])
     @user_spaces = Space.where(user_id: session[:user_id])
-    @user_requests = @bookings.where(space_id: @user_spaces)
+    @user_requests = Booking.where(space_id: @user_spaces)
     
     erb :requests
   end
-
+  
   post '/accept-or-reject/:booking_id' do
     if params[:outcome] == "Accept"
       Booking.update(params[:booking_id], accepted: true)
+      @accepted_request = Booking.find_by_id(params[:booking_id])
+      @user_spaces = Space.where(user_id: session[:user_id])
+      @user_requests = Booking.where(space_id: @user_spaces)
+      @user_requests.each do |request|
+        if request.accepted == nil && request.booked_from == @accepted_request.booked_from
+          Booking.update(request.id, accepted: false)
+        end
+      end
     else
       Booking.update(params[:booking_id], accepted: false)
     end
     redirect '/requests'
+  end
+
+  get '/settings' do
+    erb :settings
+  end
+
+  post '/delete-account' do
+    User.delete(session[:user_id])
+    session.clear
+    redirect '/'
   end
 
   run! if app_file == $PROGRAM_NAME

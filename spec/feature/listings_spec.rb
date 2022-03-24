@@ -28,6 +28,16 @@ feature 'create listing' do
     expect(current_path).to eq '/new-space'
     expect(page).to have_content 'Your end date cannot be before your start date. Please try again.'
   end
+
+  scenario 'cannot create listing when fields are not completed' do 
+    sign_up_bobby
+    click_button 'List a Space'
+    fill_in 'availability_from', with: '03/04/2022'
+    fill_in 'availability_to', with: '02/04/2022'
+    click_button 'List my Space'
+    expect(current_path).to eq '/new-space'
+    expect(page).to have_content "Please complete all fields to list your space"
+  end
 end
 
 
