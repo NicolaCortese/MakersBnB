@@ -59,10 +59,13 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/booking/:id' do
-    @booking = Booking.create(
+    p params
+    @booking = Booking.new(
       user_id: session[:user_id],
-      space_id: params[:id]
+      space_id: params[:id],
+      booked_from: params[:booked_from]
     )
+    p params
     @booking.save
 
     flash[:notice] = 'Booking successfull!'
@@ -71,6 +74,8 @@ class Makersbnb < Sinatra::Base
 
   get '/listing/:id' do
     @space = Space.find_by_id(params[:id])
+    @start_date = @space.availability_from
+    @end_date = @space.availability_to
     erb :listing
   end
 
