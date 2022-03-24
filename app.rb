@@ -59,17 +59,21 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/booking/:id' do
-    p params
     @booking = Booking.new(
       user_id: session[:user_id],
       space_id: params[:id],
       booked_from: params[:booked_from]
     )
-    p params
-    @booking.save
-
-    flash[:notice] = 'Booking successfull!'
-    redirect '/'
+    p Booking.where(space_id: params[:id], booked_from: params[:booked_from], accepted: true)
+    if !Booking.where(space_id: params[:id], booked_from: params[:booked_from], accepted: true).empty?
+      flash[:notice] = 'This space is not avaialable on that date'
+      redirect "/listing/#{params[:id]}"
+    else 
+      flash[:notice] = 'Booking successfull!'
+      @booking.save
+      redirect '/'
+    end
+    
   end
 
   get '/listing/:id' do
