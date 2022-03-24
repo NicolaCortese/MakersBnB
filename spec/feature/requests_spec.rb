@@ -127,7 +127,8 @@ feature 'Requests' do
     fill_in 'password', with: 'Bob1'
     click_button 'Log in'
     click_button 'Requests'
-    click_button 'Accept'
+    
+    first('.request').click_button 'Accept'
     expect(page).to_not have_button 'Accept'
     expect(page).to_not have_button 'Decline'
 
