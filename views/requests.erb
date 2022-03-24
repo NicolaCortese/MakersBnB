@@ -27,7 +27,7 @@
     Requested by <%= User.find_by_id(booking.user_id).username %>
     at: <%= booking.created_at.strftime("%d/%m/%Y %k:%M") %>
   <% if booking.accepted == nil %>
-  <form action="/accept-or-reject/<%= booking.id %>" method="post">
+  <form class="request" action="/accept-or-reject/<%= booking.id %>" method="post">
     <input type="submit" name="outcome" value="Accept">
     <input type="submit" name="outcome" value="Decline">
   </form>
