@@ -40,7 +40,7 @@ feature 'Requests' do
 
     expect(page).to have_content 'A Damp Cave'
     expect(page.text.index("A Damp Cave")).to be > page.text.index("Requests Received")
-    expect(page).to have_content 'Requested by Bab'
+    expect(page).to have_content 'Bab requested to book'
   end
 
   scenario 'Viewing the status of my request as pending' do
@@ -132,6 +132,33 @@ feature 'Requests' do
     expect(page).to_not have_button 'Accept'
     expect(page).to_not have_button 'Decline'
 
+  end
+
+  scenario "Cannot book the same day as an accepted booking" do
+    sign_up_bobby
+    create_space_damp_cave
+    click_button 'Log out'
+    sign_up_babdul
+    click_button 'View Listing' 
+    fill_in 'booked_from', with: '01/04/2022'
+    click_button 'Request to book'
+    click_button 'Log out'
+    click_button 'Login'
+    fill_in 'username', with: 'Bob'
+    fill_in 'password', with: 'Bob1'
+    click_button 'Log in'
+    click_button 'Requests'
+    click_button 'Accept'
+    visit '/'
+    click_button 'Log out'
+    click_button 'Login'
+    fill_in 'username', with: 'Bab'
+    fill_in 'password', with: 'Bab1'
+    click_button 'Log in'
+    click_button 'View Listing' 
+    click_button 'Request to book'
+
+    expect(page).to have_content 'This space is not avaialable on that date'
   end
 
 

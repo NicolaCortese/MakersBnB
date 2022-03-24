@@ -14,7 +14,7 @@
     Status Denied
   <% end %>
   <br>
-  Booking request sent at: <%= booking.created_at.strftime("%d/%m/%Y %k:%M") %>
+  Booking request sent at: <%= booking.created_at.strftime("%k:%M %d/%m/%Y") %>
   <br>
   <br>
 <% end %>
@@ -22,10 +22,10 @@
 <% @user_requests.order(created_at: :asc).each do |booking| %>
   <a href="/listing/<%=booking.space_id %>">
     <%= Space.find_by_id(booking.space_id).space_name %>
-  </a>
-  <br>
-    Requested by <%= User.find_by_id(booking.user_id).username %>
-    at: <%= booking.created_at.strftime("%d/%m/%Y %k:%M") %>
+  </a> <br>
+    <%= User.find_by_id(booking.user_id).username %> requested to book the night of: <%= booking.booked_from.split("-").reverse.join("/") %>
+    <br>
+    Request made at: <%= booking.created_at.strftime("%k:%M %d/%m/%Y") %>
   <% if booking.accepted == nil %>
   <form class="request" action="/accept-or-reject/<%= booking.id %>" method="post">
     <input type="submit" name="outcome" value="Accept">
