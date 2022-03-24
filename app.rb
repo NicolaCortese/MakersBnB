@@ -157,7 +157,7 @@ class Makersbnb < Sinatra::Base
   post '/accept-or-reject/:booking_id' do
     if params[:outcome] == "Accept"
       Booking.update(params[:booking_id], accepted: true)
-      @accepted_request = Booking.find_by_id(params[booking_id])
+      @accepted_request = Booking.find_by_id(params[:booking_id])
       @user_spaces = Space.where(user_id: session[:user_id])
       @user_requests = Booking.where(space_id: @user_spaces)
       @user_requests.each do |request|
@@ -169,6 +169,16 @@ class Makersbnb < Sinatra::Base
       Booking.update(params[:booking_id], accepted: false)
     end
     redirect '/requests'
+  end
+
+  get '/settings' do
+    erb :settings
+  end
+
+  post '/delete-account' do
+    User.delete(session[:user_id])
+    session.clear
+    redirect '/'
   end
 
   run! if app_file == $PROGRAM_NAME

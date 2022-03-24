@@ -21,6 +21,8 @@ else
 end
 
 class Booking < ActiveRecord::Base
+  belongs_to :user
+  belongs_to :space
   validates :space_id, presence: true
   validates :user_id, presence: true
   # validates :booked_from
