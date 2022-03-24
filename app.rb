@@ -64,7 +64,7 @@ class Makersbnb < Sinatra::Base
       space_id: params[:id],
       booked_from: params[:booked_from]
     )
-    p Booking.where(space_id: params[:id], booked_from: params[:booked_from], accepted: true)
+
     if !Booking.where(space_id: params[:id], booked_from: params[:booked_from], accepted: true).empty?
       flash[:notice] = 'This space is not avaialable on that date'
       redirect "/listing/#{params[:id]}"

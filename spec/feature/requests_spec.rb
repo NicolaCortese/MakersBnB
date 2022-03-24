@@ -40,7 +40,7 @@ feature 'Requests' do
 
     expect(page).to have_content 'A Damp Cave'
     expect(page.text.index("A Damp Cave")).to be > page.text.index("Requests Received")
-    expect(page).to have_content 'Requested by Bab'
+    expect(page).to have_content 'Bab requested to book'
   end
 
   scenario 'Viewing the status of my request as pending' do
