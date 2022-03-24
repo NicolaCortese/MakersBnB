@@ -9,17 +9,14 @@
       <br>
       £<%= @space.price %>
       <br>
-      <br>
-      Available From:
-      <br>
-      <%= @space.availability_from.split("-").reverse.join("-") %>
-      <br>
-      <br>
-      Until:
-      <br>
-      <%= @space.availability_to.split("-").reverse.join("-") %>
-      <br>
-      <br>
       <form action="/booking/<%=@space.id%>" method="post">
+        <br>
+        Night to book:
+        <br>
+        <input type="date" id="booked_from" name="booked_from"
+         value="<%=@start_date%>"
+         min="<%=@start_date%>" max="<%=@end_date%>">
+        <br>
+        <br>
         <input type="submit" value="Request to book">
       </form>

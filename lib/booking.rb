@@ -23,6 +23,6 @@ end
 class Booking < ActiveRecord::Base
   validates :space_id, presence: true
   validates :user_id, presence: true
-  # validates :booked_from
+  validates :booked_from, presence: true
   # validates :booked_to
 end
