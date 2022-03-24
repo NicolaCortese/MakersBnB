@@ -1,26 +1,70 @@
+<head>
+  <title></title>
+  <link href="<%= url('/styles.css') %>" rel="stylesheet" type="text/css" />
+</head>
+
+<header>
+  <img class ="logo" src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="70" height="57">
+
+<nav>
+
+<ul class = "nav__links">
+
+<li>  
+  <form action = "/log-out" method = 'post'>
+  <input id = "button" type = "submit" value = "Log out" >
+  </form>
+</li>
+<li>
+  <form action="/about" method="get">
+  <input id= 'button' type = "submit" value = "About">
+  </form>
+</li>
+<li>
+  <div class="dropdown">
+  <button class="dropbtn">My spaces</button>
+  <div class="dropdown-content">
+  <form action = "/my-spaces">
+  <input type = "submit" value = "View my spaces" >
+  </form>
+  <form action = "/new-space" method = 'get'>
+    <input type = "submit" value = "List a Space" >
+  </form>
+  <form action = "/requests" method = 'get'>
+    <input type = "submit" value = "Requests" >
+  </form>
+  </div>
+</div>
+</li>
+
+</ul>
+
+</nav>
+
+</header>
 
 <h1> Edit your Space</h1>
 
 <h3><%=flash[:notice]%></h3>
-
+<div id= "window">
 <form action="/edit-space/<%= @space.id %>" method="post">
     <label for="name">
-    Name
+    <p>Name</p>
     <input type="text" name="space_name" value="<%= @space.space_name %>">
     </label>
     <br>
     <label for="description">
-    Description
+    <p>Description</p>
     <input type="text" name="description" value="<%= @space.description %>" >
     </label>
     <br>
     <label for="price">
-    Price per night
+    <p>Price per night</p>
     <input type="text" name="price" value="<%= @space.price %>" >
     </label>
     <br>
     <label for="availability_from">
-    Availability from
+    <p>Availability from</p>
     <br>
     <input type="date" id="availability_from" name="availability_from"
           value="<%=@current_start_date%>"
@@ -28,7 +72,7 @@
     <br>
     <br>
     <label for="availability_to">
-    Availability to
+    <p>Availability to</p>
     <br>
     <input type="date" id="availability_to" name="availability_to"
           value="<%=@current_end_date%>"
@@ -36,3 +80,4 @@
     <br>
     <input type="submit" value="Save">
   </form>
+</div>
