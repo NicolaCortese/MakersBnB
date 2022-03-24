@@ -142,7 +142,10 @@ class Makersbnb < Sinatra::Base
     @start_date = @space.availability_from.to_date
     @end_date = @space.availability_to.to_date
 
-    if @end_date <= @start_date
+    if params[:space_name] == "" || params[:description] == "" || params[:price] == ""
+      flash[:notice]= "Please complete all fields to list your space"
+      redirect '/new-space'
+    elsif @end_date <= @start_date
       flash[:notice]= "Your end date cannot be before your start date. Please try again."
       redirect '/new-space'
     else
