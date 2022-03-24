@@ -74,10 +74,12 @@
         <br>
         Night to book:
         <br>
-        <input type="date" id="booked_from" name="booked_from"
-         value="<%=@start_date%>"
-         min="<%=@start_date%>" max="<%=@end_date%>">
-        <br>
+        <select name="booked_from" id="booked_from">
+          <% @new_array.each do |date| %>
+            <option value="<%= date %>"> <%= date %> </option>
+          <% end %>
+        
+        
         <br>
         <input id = "RTB" type="submit" value="Request to book">
 

@@ -140,7 +140,7 @@ feature 'Requests' do
     click_button 'Log out'
     sign_up_babdul
     click_button 'View Listing' 
-    fill_in 'booked_from', with: '01/04/2022'
+    select '2022-04-01', from: 'booked_from'
     click_button 'Request to book'
     click_button 'Log out'
     click_button 'Login'
@@ -159,6 +159,19 @@ feature 'Requests' do
     click_button 'Request to book'
 
     expect(page).to have_content 'This space is not avaialable on that date'
+  end
+
+  scenario "Can only see the available dates in the dropdown" do
+    sign_up_bobby
+    create_space_damp_cave
+    click_button 'Log out'
+    sign_up_babdul
+    click_button 'View Listing' 
+    select '2022-04-01', from: 'booked_from'
+    click_button 'Request to book'
+    click_button 'View Listing' 
+
+    expect(page).to have_select('booked_from', :options => ['2022-04-02'])
   end
 
 
