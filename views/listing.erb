@@ -1,3 +1,51 @@
+      <head>
+  <title></title>
+  <link href="<%= url('/styles.css') %>" rel="stylesheet" type="text/css" />
+</head>
+
+<header>
+  <img class ="logo" src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="70" height="57">
+
+<nav>
+
+<ul class = "nav__links">
+
+<li>  
+  <form action = "/log-out" method = 'post'>
+  <input id = "button" type = "submit" value = "Log out" >
+  </form>
+</li>
+<li>
+  <form action="/about" method="get">
+  <input id= 'button' type = "submit" value = "About">
+  </form>
+</li>
+<li>
+  <div class="dropdown">
+  <button class="dropbtn">My spaces</button>
+  <div class="dropdown-content">
+  <form action = "/my-spaces">
+  <input type = "submit" value = "View my spaces" >
+  </form>
+  <form action = "/new-space" method = 'get'>
+    <input type = "submit" value = "List a Space" >
+  </form>
+  <form action = "/requests" method = 'get'>
+    <input type = "submit" value = "Requests" >
+  </form>
+  </div>
+</div>
+</li>
+
+</ul>
+
+</nav>
+
+</header>
+      <h2 id= "listing" > <%= @space.space_name %> </h2>
+      <!-- IMAGE OF LISTING -->
+      <div id= "window">
+      <p>Property description:</p>
       <h3> <%= @space.space_name %> </h3>
       <h4> <%= flash[:notice] %> </h4>
       Property description:
@@ -5,10 +53,23 @@
       <%= @space.description %>
       <br>
       <br>
-      Price:
+      <p>Price:</p>
       <br>
       £<%= @space.price %>
       <br>
+      <br>
+      <p>Available From:</p>
+      <br>
+      <%= @space.availability_from.split("-").reverse.join("-") %>
+      <br>
+      <br>
+      <p>Until:</p>
+      <br>
+      <%= @space.availability_to.split("-").reverse.join("-") %>
+      <br>
+      <br>
+      </div>
+
       <form action="/booking/<%=@space.id%>" method="post">
         <br>
         Night to book:
@@ -18,5 +79,6 @@
          min="<%=@start_date%>" max="<%=@end_date%>">
         <br>
         <br>
-        <input type="submit" value="Request to book">
+        <input id = "RTB" type="submit" value="Request to book">
+
       </form>

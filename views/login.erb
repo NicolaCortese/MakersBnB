@@ -1,19 +1,44 @@
+<head>
+  <title></title>
+  <link href="<%= url('/styles.css') %>" rel="stylesheet" type="text/css" />
+</head>
+
+<header>
+  <img class ="logo" src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="70" height="57">
+
+<nav>
+
+<ul class = "nav__links">
+
+<li><form action="/about" method="get">
+  <input id= 'button' type = "submit" value = "About">
+</form></li><li><form action="/" method="get">
+  <input id= 'button' type = "submit" value = "Sign-up">
+</form></li>
+</ul>
+
+</nav>
+
+</header>
+
+
 <h1> Log in to MakersBnB </h1>
 
 <h3><%=flash[:notice]%></h3>
 
 <br>
-
+<div id= "window">
   <form action="/logging-in" method="post">
     <br>
     <label for="username">
-    Username
+    <p>Username</p>
     <input type="text" name="username">
     </label>
     <br>
     <label for="password">
-    Password
+    <p>Password</p>
     <input type="password" name="password">
     <br>
     <input type="submit" value="Log in">
   </form>
+  </div>
