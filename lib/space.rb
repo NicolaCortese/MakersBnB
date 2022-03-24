@@ -24,6 +24,8 @@ class Space < ActiveRecord::Base
   validates :space_name, presence: true
   validates :description, presence: true
   validates :price, presence: true
+  belongs_to :user
+  has_many :bookings, dependent: :destroy
   # validates :availability_from
   # validates :availability_to
 end

@@ -112,5 +112,27 @@ feature 'Requests' do
 
   end
 
+  scenario "Able to accept only one request for a specific date" do
+    sign_up_bobby
+    create_space_damp_cave
+    click_button 'Log out'
+    sign_up_babdul
+    click_button 'View Listing' 
+    click_button 'Request to book'
+    click_button 'View Listing' 
+    click_button 'Request to book'
+    click_button 'Log out'
+    click_button 'Login'
+    fill_in 'username', with: 'Bob'
+    fill_in 'password', with: 'Bob1'
+    click_button 'Log in'
+    click_button 'Requests'
+    
+    first('.request').click_button 'Accept'
+    expect(page).to_not have_button 'Accept'
+    expect(page).to_not have_button 'Decline'
+
+  end
+
 
 end
