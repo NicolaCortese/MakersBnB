@@ -215,5 +215,9 @@ class Makersbnb < Sinatra::Base
     redirect '/'
   end
 
+  get '/about' do
+    erb :about
+  end
+
   run! if app_file == $PROGRAM_NAME
 end

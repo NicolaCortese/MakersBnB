@@ -4,28 +4,16 @@
 </head>
 
 <header>
-  <a href = "/" class ="logo"> <img src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="70" height="57"></a>
+  <img class ="logo" src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="105" height="85">
 
 <nav>
 
 <ul class = "nav__links">
 
-
-
-<li>
-  <div class="dropdown">
-  <button id= 'button' class="dropbtn">My spaces</button>
-  <div class="dropdown-content">
-  
-  <form action = "/my-spaces">
-  <input id= 'button' type = "submit" value = "View my spaces" >
+<li>  
+  <form action = "/log-out" method = 'post'>
+  <input id = "button" type = "submit" value = "Log out" >
   </form>
-  
-  <form action = "/new-space" method = 'get'>
-    <input id= 'button' type = "submit" value = "List a Space" >
-  </form>
-  </div>
-</div>
 </li>
 <li>
   <form action="/about" method="get">
@@ -33,15 +21,22 @@
   </form>
 </li>
 <li>
-<form action="/settings" method="get">
-    <input id= 'button' type = "submit" value = "Settings">
+  <div class="dropdown">
+  <button id = "button" class="dropbtn">My spaces</button>
+  <div class="dropdown-content">
+  <form action = "/my-spaces">
+  <input id = "button" type = "submit" value = "View my spaces" >
   </form>
-</li>
-<li>  
-  <form action = "/log-out" method = 'post'>
-  <input id = "button" type = "submit" value = "Log out" >
+  <form action = "/new-space" method = 'get'>
+    <input id = "button" type = "submit" value = "List a Space" >
   </form>
+  <form action = "/requests" method = 'get'>
+    <input id = "button" type = "submit" value = "Requests" >
+  </form>
+  </div>
+</div>
 </li>
+
 </ul>
 
 </nav>
@@ -50,6 +45,7 @@
 <h1> MakersBnB: <small>Requests</small></h1>
 <div id ="R">
 <div id= "RM">
+<br>
 <h3> Requests Made </h3>
 <% @user_bookings.order(created_at: :desc).each do |booking| %>
   <a href="/listing/<%=booking.space_id %>">
@@ -70,6 +66,7 @@
 <% end %>
 </div>
 <div id= "RR">
+<br>
 <h3> Requests Received </h3>
 <% @user_requests.order(created_at: :asc).each do |booking| %>
   <a href="/listing/<%=booking.space_id %>">

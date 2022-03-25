@@ -9,7 +9,7 @@
 </head>
 
 <header>
-  <a href = "/" class ="logo"> <img src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="70" height="57"></a>
+  <a href = "/" class ="logo"> <img src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="105" height="85"></a>
 
 <nav>
 
@@ -31,7 +31,7 @@
 
 </header>
 <h1 id= "welcome" > Welcome to MakersBnB </h1>
-
+  <br>
   <h3><%=flash[:notice]%></h3>
   <br>
 
@@ -39,30 +39,36 @@
 <div id ="window">
   <form action="/sign-up" method="post">
     <label for="name">
-    <p>Name:</p>
     <br>
+    <p>Name:</p>
+
     <input type="text" name="name">
     </label>
     <br>
     <label for="email">
-    <p>Email:</p>
     <br>
+    <p>Email:</p>
     <input type="text" name="email">
     </label>
     <br>
     <label for="username">
-    <p>Username:</p>
     <br>
+    <p>Username:</p>
     <input type="text" name="username">
     </label>
     <br>
     <label for="password">
-    <p>Password:</p>
     <br>
+    <p>Password:</p>
+    
     <input type="password" name="password">
     <br>
-    <input id= button type="submit" value="Sign up">
+    <br>
+    <input type="submit" value="Sign up">
+    <br>
+    <br>
   </form>
+  
   </div>
   <%# When user IS logged in %>
 <% else %>
@@ -72,7 +78,7 @@
 </head>
 
 <header>
-  <a href = "/" class ="logo"> <img src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="70" height="57"></a>
+  <a href = "/" class ="logo"> <img src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="105" height="85"></a>
 
 <nav>
 
@@ -122,17 +128,27 @@
   <h1>Welcome, <%=@user.name%></h1>
   <h3><%=flash[:notice]%></h3>
   
-<div id= "window">
+<div id= "list1">
   <% @space.each do |space| %>
-    <li>
-        <%= space.space_name %> - listed by <%= User.find_by_id(space.user_id).username %>  
-        <!-- space.tag -->
+    <div id ="listing">
+
+        <%= space.space_name %>
+        <br>
+        listed by <%= User.find_by_id(space.user_id).username %>  
+        <br>
+        <br>
+        Price per night: 
+        <br>
         £<%= space.price %>
+        <br>
         <br>
         <form method="get" action="/listing/<%=space.id %>">
           <input type="submit" value="View Listing">
         </form>
+                  </div>
+
   <% end %>
+
   </div>
   
 

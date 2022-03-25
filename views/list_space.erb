@@ -4,7 +4,7 @@
 </head>
 
 <header>
-  <img class ="logo" src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="70" height="57">
+  <img class ="logo" src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="105" height="85">
 
 <nav>
 
@@ -54,22 +54,24 @@
 <div id ="window">
 <form action="/listing-space" method="post">
     <label for="name">
-    <p>Name:</p>
     <br>
+    <br>
+    <p>Name:</p>
     <input type="text" name="space_name">
     </label>
+    
     <br>
     <br>
     <label for="description">
     <p>Description:</p>
-    <br>
+    
     <input type="text" name="description">
     </label>
     <br>
     <br>
     <label for="price">
     <p>Price per night:</p>
-    <br>
+    
 <%# 
     <label for='firstName'>First Name:</label>
     <input type='text' id='firstName' placeholder='First name'> %>
@@ -80,7 +82,7 @@
     <br>
     <label for="availability_from">
     <p>Availability from</p>
-    <br>
+    
     <input type="date" id="availability_from" name="availability_from"
           value="<%=@today%>"
           min="<%=@today%>" max="2022-12-31">
@@ -88,14 +90,17 @@
     <br>
     <label for="availability_to">
     <p>Availability to</p>
-    <br>
+    
     <input type="date" id="availability_to" name="availability_to"
           value="<%=@tomorrow%>"
           min="<%=@tomorrow%>" max="2022-12-31">
     <br>
     <br>
     <input type="submit" value="List my Space">
+    <br>
+    <br>
   </form>
+  
 </div>
   
 <!--<label for="start">Start date:</label>
