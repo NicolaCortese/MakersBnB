@@ -19,6 +19,7 @@ class Makersbnb < Sinatra::Base
   get '/' do
     @user = User.find_by_id(session[:user_id])
     @space = Space.all
+    p @space
     erb :index
   end
 
@@ -62,11 +63,22 @@ class Makersbnb < Sinatra::Base
     @booking = Booking.new(
       user_id: session[:user_id],
       space_id: params[:id],
-      booked_from: params[:booked_from]
+      booked_from: params[:booked_from],
+      booked_to: params[:booked_to]
     )
+    conflict = false
+    @requested_dates = (params[:booked_from].to_date..params[:booked_to].to_date).to_a
+    Booking.where(space_id: params[:id], accepted: true).each do |booking|
+      @taken_dates = (booking.booked_from.to_date..booking.booked_to.to_date).to_a
+      @requested_dates.each do |date|
+        if @taken_dates.include?(date)
+          conflict = true
+        end
+      end
+    end
 
-    if !Booking.where(space_id: params[:id], booked_from: params[:booked_from], accepted: true).empty?
-      flash[:notice] = 'This space is not avaialable on that date'
+    if conflict
+      flash[:notice] = 'This space is not available on those dates'
       redirect "/listing/#{params[:id]}"
     else 
       flash[:notice] = 'Booking successfull!'
@@ -78,6 +90,16 @@ class Makersbnb < Sinatra::Base
 
   get '/listing/:id' do
     @space = Space.find_by_id(params[:id])
+    @total_availability = (@space.availability_from.to_date..@space.availability_to.to_date).to_a
+
+    Booking.where(space_id: params[:id], accepted: true).each do |booking|
+      (booking.booked_from.to_date..booking.booked_to.to_date).to_a.each do |date|
+        @total_availability.delete(date)
+      end
+    end
+    
+    @owner_username = User.find_by_id(@space.user_id).username
+    
     @start_date = @space.availability_from
     @end_date = @space.availability_to
     erb :listing

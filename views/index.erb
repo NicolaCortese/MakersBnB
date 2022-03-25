@@ -124,7 +124,8 @@
   
 <div id= "window">
   <% @space.each do |space| %>
-        <%= space.space_name %>
+    <li>
+        <%= space.space_name %> - listed by <%= User.find_by_id(space.user_id).username %>  
         <!-- space.tag -->
         £<%= space.price %>
         <br>
