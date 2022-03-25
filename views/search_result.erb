@@ -1,0 +1,5 @@
+<%@available_spaces.each do |id| %>
+  <li>
+    <%= Space.find_by_id(id).space_name %>
+  </li>
+<% end %>

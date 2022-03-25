@@ -111,8 +111,24 @@
 
   <h1>Welcome, <%=@user.name%></h1>
   <h3><%=flash[:notice]%></h3>
+
+  <form action='/spaces-by-date' method="post">
+    <input type="date" id="search_from" name="search_from"
+          value="<%=@today%>"
+          min="<%=@today%>" max="2022-12-31">
+    <input type="date" id="search_to" name="search_to"
+          value="<%=@tomorrow%>"
+          min="<%=@tomorrow%>" max="2022-12-31">
+    <input type="submit" value="Search">
+
+  </form>
+  <br>
+  <form action='/clear-search' method="post">
+    <input type="submit" value="Clear search">
+  </form>
   
 <div id= "window">
+  <% if !session[:available_spaces] %>
   <ul>
   <% @space.each do |space| %>
     <li>
@@ -126,8 +142,22 @@
     </li>
   <% end %>
   </ul>
+  <% else %>
+  <ul>
+    <% @available_spaces.each do |id| %>
+    <li>
+        <%= Space.find_by_id(id).space_name %>
+        <!-- space.tag -->
+        £<%= Space.find_by_id(id).price %>
+        <br>
+        <form method="get" action="/listing/<%= id %>">
+          <input type="submit" value="View Listing">
+        </form>
+    </li>
+  <% end %>
+  </ul>
+  <% end %>
   </div>
   
-
 <% end %>
 
