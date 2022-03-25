@@ -46,6 +46,7 @@ feature 'view listings' do
   scenario 'user can see all listings on home page' do
     sign_up_bobby
     create_space_damp_cave
+    expect(page).to have_content 'Bob'
     expect(page).to have_content 'A Damp Cave'
     expect(page).to have_content '£4000'
     expect(current_path).to eq '/'

@@ -78,6 +78,8 @@ class Makersbnb < Sinatra::Base
 
   get '/listing/:id' do
     @space = Space.find_by_id(params[:id])
+    @owner = User.find_by_id(@space.user_id)
+    @owner_username = @owner.username
     @start_date = @space.availability_from
     @end_date = @space.availability_to
     erb :listing
