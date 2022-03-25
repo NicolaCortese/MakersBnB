@@ -19,7 +19,6 @@ class Makersbnb < Sinatra::Base
   get '/' do
     @user = User.find_by_id(session[:user_id])
     @space = Space.all
-    p @space
     erb :index
   end
 
