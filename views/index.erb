@@ -116,7 +116,7 @@
   <ul>
   <% @space.each do |space| %>
     <li>
-        <%= space.space_name %>
+        <%= space.space_name %> - listed by <%= User.find_by_id(space.user_id).username %>  
         <!-- space.tag -->
         £<%= space.price %>
         <br>
