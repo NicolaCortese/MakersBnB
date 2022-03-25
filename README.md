@@ -126,11 +126,14 @@ I want to be able to request to book the bnb
 ------------------------------------------------------------------------------------------
 # Project Title
 
-One Paragraph of project description goes here
+Makersbnb is a web application in which users can interact with one another listing and booking available spaces.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+- Fork this repo
+- Clone it to your local machine
+- And presto you have it on your machine
+- Ready to install
 
 ### Prerequisites
 
@@ -142,10 +145,21 @@ Give examples
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
+- Run the command "bundle" on your terminal to install all the gems necessary
+- Now we are going to create the "makersbnb" database and the "makersbnb_test' database
+- Enter the "PostgreSQL" terminal by running the command "psql" in your terminal 
+- Open the "db/migration" folder
+- Open the "01_creating_databases.sql" file
+- In your "PostgreSQL" terminal, run each line of code
+- Next we are going to create the user table, space table and booking table for both the "makersbnb" and "makersbnb_test" databases.
+- Open the "02_creating_user_tables.sql" file
+- In your "PostgreSQL" terminal, run each line of code
+- Open the "03_creating_spaces_table.sql" file
+- In your "PostgreSQL" terminal, run each line of code
+- Open the "04_creating_bookings_table.sql" file
+- Run each line of code 
+- Exit "PostgreSQL" by running the command "\q" in the "PostgreSQL" terminal
+- Presto! you are ready to use the web application.
 ```
 Give the example
 ```
@@ -160,7 +174,7 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+- To run the automated "RSpec" tests, in your teminal run the command  "rspec"
 
 ### Break down into end to end tests
 
@@ -180,7 +194,8 @@ Give an example
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+- To deploy run the command "rackup" in your teminal 
+
 
 ## Built With
 
