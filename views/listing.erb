@@ -75,10 +75,16 @@
         Night to book:
         <br>
         <select name="booked_from" id="booked_from">
-          <% @new_array.each do |date| %>
+          <% @total_availability.each do |date| %>
             <option value="<%= date %>"> <%= date %> </option>
           <% end %>
-        
+        </select>
+        <br>
+        <select name="booked_to" id="booked_to">
+          <% @total_availability.each do |date| %>
+            <option value="<%= date %>"> <%= date %> </option>
+          <% end %>
+        </select>
         
         <br>
         <input id = "RTB" type="submit" value="Request to book">

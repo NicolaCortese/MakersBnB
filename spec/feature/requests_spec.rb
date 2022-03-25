@@ -134,7 +134,7 @@ feature 'Requests' do
 
   end
 
-  scenario "Cannot book the same day as an accepted booking" do
+  scenario "Can only see the available dates in the dropdown" do
     sign_up_bobby
     create_space_damp_cave
     click_button 'Log out'
@@ -142,6 +142,7 @@ feature 'Requests' do
     click_button 'View Listing' 
     select '2022-04-01', from: 'booked_from'
     click_button 'Request to book'
+    click_button 'View Listing' 
     click_button 'Log out'
     click_button 'Login'
     fill_in 'username', with: 'Bob'
@@ -155,24 +156,68 @@ feature 'Requests' do
     fill_in 'username', with: 'Bab'
     fill_in 'password', with: 'Bab1'
     click_button 'Log in'
-    click_button 'View Listing' 
-    click_button 'Request to book'
-
-    expect(page).to have_content 'This space is not avaialable on that date'
-  end
-
-  scenario "Can only see the available dates in the dropdown" do
-    sign_up_bobby
-    create_space_damp_cave
-    click_button 'Log out'
-    sign_up_babdul
-    click_button 'View Listing' 
-    select '2022-04-01', from: 'booked_from'
-    click_button 'Request to book'
-    click_button 'View Listing' 
+    click_button 'View Listing'
 
     expect(page).to have_select('booked_from', :options => ['2022-04-02'])
   end
 
+  scenario "Multiple date bookings" do
+    sign_up_bobby
+    create_space_taj
+    click_button 'Log out'
+    sign_up_babdul
+    click_button 'View Listing' 
+    select '2022-04-05', from: 'booked_from'
+    select '2022-04-08', from: 'booked_to'
+    click_button 'Request to book'
+    click_button 'View Listing' 
+    click_button 'Log out'
+    click_button 'Login'
+    fill_in 'username', with: 'Bob'
+    fill_in 'password', with: 'Bob1'
+    click_button 'Log in'
+    click_button 'Requests'
+    click_button 'Accept'
+    visit '/'
+    click_button 'Log out'
+    click_button 'Login'
+    fill_in 'username', with: 'Bab'
+    fill_in 'password', with: 'Bab1'
+    click_button 'Log in'
+    click_button 'View Listing'
+
+    expect(page).to have_select('booked_from', :options => ['2022-04-04'])
+  end
+
+  scenario "Multiple date bookings" do
+    sign_up_bobby
+    create_space_taj
+    click_button 'Log out'
+    sign_up_babdul
+    click_button 'View Listing' 
+    select '2022-04-05', from: 'booked_from'
+    select '2022-04-07', from: 'booked_to'
+    click_button 'Request to book'
+    click_button 'View Listing' 
+    click_button 'Log out'
+    click_button 'Login'
+    fill_in 'username', with: 'Bob'
+    fill_in 'password', with: 'Bob1'
+    click_button 'Log in'
+    click_button 'Requests'
+    click_button 'Accept'
+    visit '/'
+    click_button 'Log out'
+    click_button 'Login'
+    fill_in 'username', with: 'Bab'
+    fill_in 'password', with: 'Bab1'
+    click_button 'Log in'
+    click_button 'View Listing'
+    select '2022-04-04', from: 'booked_from'
+    select '2022-04-08', from: 'booked_to'
+    click_button 'Request to book'
+
+    expect(page).to have_content('This space is not available on those dates')
+  end
 
 end
