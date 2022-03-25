@@ -20,6 +20,7 @@ feature 'Requests' do
     click_button 'Requests'
 
     expect(page).to have_content 'A Damp Cave'
+    expect(page).to have_content '01/04/2022'
     expect(page.text.index("A Damp Cave")).to be > page.text.index("Requests Made")
     expect(page.text.index("A Damp Cave")).to be < page.text.index("Requests Received")
   end

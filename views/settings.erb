@@ -1,3 +1,51 @@
+<head>
+  <title></title>
+  <link href="<%= url('/styles.css') %>" rel="stylesheet" type="text/css" />
+</head>
+
+<header>
+  <a href = "/" class ="logo"> <img src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="70" height="57"></a>
+
+<nav>
+
+<ul class = "nav__links">
+
+
+
+<li>
+  <div class="dropdown">
+  <button id= 'button' class="dropbtn">My spaces</button>
+  <div class="dropdown-content">
+  
+  <form action = "/my-spaces">
+  <input id= 'button' type = "submit" value = "View my spaces" >
+  </form>
+  
+  <form action = "/new-space" method = 'get'>
+    <input id= 'button' type = "submit" value = "List a Space" >
+  </form>
+  <form action = "/requests" method = 'get'>
+    <input id= 'button' type = "submit" value = "Requests" >
+  </form>
+  </div>
+</div>
+</li>
+<li>
+  <form action="/about" method="get">
+  <input id= 'button' type = "submit" value = "About">
+  </form>
+</li>
+<li>  
+  <form action = "/log-out" method = 'post'>
+  <input id = "button" type = "submit" value = "Log out" >
+  </form>
+</li>
+</ul>
+
+</nav>
+
+</header>
+
 <form action = "/delete-account" method = 'post'>
   <input type = "submit" value = "Delete Account" onclick="return confirm('Are you sure that you want to delete your account?');">
 </form>

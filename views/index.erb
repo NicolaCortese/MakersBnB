@@ -9,17 +9,22 @@
 </head>
 
 <header>
-  <img class ="logo" src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="70" height="57">
+  <a href = "/" class ="logo"> <img src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="70" height="57"></a>
 
 <nav>
 
 <ul class = "nav__links">
 
-<li><form action="/login" method="get">
-  <input id= 'button' type = "submit" value = "About">
-</form></li><li><form action="/login" method="get">
+<li>
+<form action="/login" method="get">
   <input id= 'button' type = "submit" value = "Login">
-</form></li>
+</form>
+</li>
+<li>
+<form action="/login" method="get">
+  <input id= 'button' type = "submit" value = "About">
+</form>
+</li>
 </ul>
 
 </nav>
@@ -59,7 +64,7 @@
     <input id= button type="submit" value="Sign up">
   </form>
   </div>
-  <%# If user is logged in %>
+  <%# When user IS logged in %>
 <% else %>
 <head>
   <title></title>
@@ -67,16 +72,31 @@
 </head>
 
 <header>
-  <img class ="logo" src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="70" height="57">
+  <a href = "/" class ="logo"> <img src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="70" height="57"></a>
 
 <nav>
 
 <ul class = "nav__links">
 
-<li>  
-  <form action = "/log-out" method = 'post'>
-  <input id = "button" type = "submit" value = "Log out" >
+
+
+<li>
+  <div class="dropdown">
+  <button id= 'button' class="dropbtn">My spaces</button>
+  <div class="dropdown-content">
+  
+  <form action = "/my-spaces">
+  <input id= 'button' type = "submit" value = "View my spaces" >
   </form>
+  
+  <form action = "/new-space" method = 'get'>
+    <input id= 'button' type = "submit" value = "List a Space" >
+  </form>
+  <form action = "/requests" method = 'get'>
+    <input id= 'button' type = "submit" value = "Requests" >
+  </form>
+  </div>
+</div>
 </li>
 <li>
   <form action="/about" method="get">
@@ -84,25 +104,15 @@
   </form>
 </li>
 <li>
-  <div class="dropdown">
-  <button class="dropbtn">My spaces</button>
-  <div class="dropdown-content">
-  <form action="/settings" method="get">
-    <input type = "submit" value = "Settings">
+<form action="/settings" method="get">
+    <input id= 'button' type = "submit" value = "Settings">
   </form>
-  <form action = "/my-spaces">
-  <input type = "submit" value = "View my spaces" >
-  </form>
-  <form action = "/new-space" method = 'get'>
-    <input type = "submit" value = "List a Space" >
-  </form>
-  <form action = "/requests" method = 'get'>
-    <input type = "submit" value = "Requests" >
-  </form>
-  </div>
-</div>
 </li>
-
+<li>  
+  <form action = "/log-out" method = 'post'>
+  <input id = "button" type = "submit" value = "Log out" >
+  </form>
+</li>
 </ul>
 
 </nav>
@@ -132,14 +142,13 @@
   <ul>
   <% @space.each do |space| %>
     <li>
-        <%= space.space_name %>
+        <%= space.space_name %> - listed by <%= User.find_by_id(space.user_id).username %>  
         <!-- space.tag -->
         £<%= space.price %>
         <br>
         <form method="get" action="/listing/<%=space.id %>">
           <input type="submit" value="View Listing">
         </form>
-    </li>
   <% end %>
   </ul>
   <% else %>
