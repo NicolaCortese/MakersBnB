@@ -90,12 +90,14 @@ class Makersbnb < Sinatra::Base
   get '/listing/:id' do
     @space = Space.find_by_id(params[:id])
     @total_availability = (@space.availability_from.to_date..@space.availability_to.to_date).to_a
-#figure out how
+
     Booking.where(space_id: params[:id], accepted: true).each do |booking|
       (booking.booked_from.to_date..booking.booked_to.to_date).to_a.each do |date|
         @total_availability.delete(date)
       end
     end
+    
+    @owner_username = User.find_by_id(@space.user_id).username
     
     @start_date = @space.availability_from
     @end_date = @space.availability_to

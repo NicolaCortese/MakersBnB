@@ -42,9 +42,11 @@
 </nav>
 
 </header>
-      <h2 id= "listing" > <%= @space.space_name %> </h2>
+      <h2 id= "listing" ><%= @space.space_name %> </h2>
       <!-- IMAGE OF LISTING -->
       <div id= "window">
+      <p>Owner: </p>
+      <h3>  <%=@owner_username%> </h3>
       <p>Property description:</p>
       <h3> <%= @space.space_name %> </h3>
       <h4> <%= flash[:notice] %> </h4>
