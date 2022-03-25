@@ -196,6 +196,9 @@ Give an example
 
 - To deploy run the command "rackup" in your teminal 
 - <img width="534" alt="Screenshot 2022-03-25 at 15 17 06" src="https://user-images.githubusercontent.com/92959738/160151865-f09a7f1d-b0ca-4040-b39b-70dc6d3d113c.png">
+- remember your  4 digit number "port", in my case 9292.
+- In your web browser input "localhost:" followed by your "port" 4 digit number, in my case 9292.
+- 
 
 
 ## Built With
