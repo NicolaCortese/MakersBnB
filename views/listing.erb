@@ -4,7 +4,7 @@
 </head>
 
 <header>
-  <a href = "/" class ="logo"> <img src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="105" height="85"></a>
+  <a href = "/" class ="logo"> <img src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="70" height="57"></a>
 
 <nav>
 
@@ -53,36 +53,23 @@
       <h2 id= "listing" ><%= @space.space_name %> </h2>
       <!-- IMAGE OF LISTING -->
       <div id= "window">
-      <p>Owner: </p>
-      <h3>  <%=@owner_username%> </h3>
-      <p>Property description:</p>
-      <h3> <%= @space.space_name %> </h3>
-      <h4> <%= flash[:notice] %> </h4>
+      Owner:
+      <br>
+      <%=@owner_username%>
+      <br>
+      <br>
       Property description:
-      <br>
       <%= @space.description %>
+      <%= flash[:notice] %>
       <br>
       <br>
-      <p>Price:</p>
+      Price:
       <br>
       £<%= @space.price %>
       <br>
-      <br>
-      <p>Available From:</p>
-      <br>
-      <%= @space.availability_from.split("-").reverse.join("-") %>
-      <br>
-      <br>
-      <p>Until:</p>
-      <br>
-      <%= @space.availability_to.split("-").reverse.join("-") %>
-      <br>
-      <br>
-      </div>
-
       <form action="/booking/<%=@space.id%>" method="post">
         <br>
-        Night to book:
+        Check in:
         <br>
         <select name="booked_from" id="booked_from">
           <% @total_availability.each do |date| %>
@@ -90,13 +77,20 @@
           <% end %>
         </select>
         <br>
+        <br>
+        Check out:
+        <br>
         <select name="booked_to" id="booked_to">
           <% @total_availability.each do |date| %>
             <option value="<%= date %>"> <%= date %> </option>
           <% end %>
         </select>
-        
         <br>
-        <input id = "RTB" type="submit" value="Request to book">
-
+        <br>
+        <input type="submit" value="Request to book">
+        <br>
+        <br>
       </form>
+      </div>
+
+      

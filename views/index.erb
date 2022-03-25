@@ -127,7 +127,7 @@
 
   <h1>Welcome, <%=@user.name%></h1>
   <h3><%=flash[:notice]%></h3>
-
+<div id="window">
   <form action='/spaces-by-date' method="post">
     <input type="date" id="search_from" name="search_from"
           value="<%=@today%>"
@@ -136,13 +136,13 @@
           value="<%=@tomorrow%>"
           min="<%=@tomorrow%>" max="2022-12-31">
     <input type="submit" value="Search">
-
   </form>
   <br>
   <form action='/clear-search' method="post">
     <input type="submit" value="Clear search">
   </form>
-  
+  </div>
+
 <div id= "list1">
   <% if !session[:available_spaces] %>
   <ul>
