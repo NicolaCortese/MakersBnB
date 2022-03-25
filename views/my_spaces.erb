@@ -4,7 +4,7 @@
 </head>
 
 <header>
-  <a href = "/" class ="logo"> <img src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="70" height="57"></a>
+  <a href = "/" class ="logo"> <img src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="105" height="85"></a>
 
 <nav>
 
@@ -42,8 +42,10 @@
 
 <h1> Here is a list of <%= @user.name %>'s spaces: </h1>
 <h3><%=flash[:notice]%></h3>
-<div id ="window">
+<div id ="list1">
   <% @space.each do |space| %>
+  <div id= "listing">
+
         <%= space.space_name %>
         <!-- space.tag -->
         £<%= space.price %>
@@ -54,5 +56,6 @@
         <form action="/delete-space/<%= space.id %>" method='post'>
           <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this item?');">
         </form>
+        </div>
   <% end %>
   </div>
