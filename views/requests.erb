@@ -50,7 +50,12 @@
 <% @user_bookings.order(created_at: :desc).each do |booking| %>
   <a href="/listing/<%=booking.space_id %>">
     <%= Space.find_by_id(booking.space_id).space_name %> 
-  </a>
+    </a>
+    <% if booking.booked_from == booking.booked_to %>
+    for the date: <%= booking.booked_from.split('-').reverse.join('/') %>
+    <% else %>
+      for the dates: <%= booking.booked_from.split('-').reverse.join('/') %> to <%= booking.booked_to.split('-').reverse.join('/') %>
+    <% end %>
   <br>
   <% if booking.accepted == nil %>
      <p>Status Pending</p>
@@ -72,7 +77,11 @@
   <a href="/listing/<%=booking.space_id %>">
     <%= Space.find_by_id(booking.space_id).space_name %>
   </a> <br>
-   <p> <%= User.find_by_id(booking.user_id).username %> requested to book the night of: <%= booking.booked_from.split("-").reverse.join("/") %>
+  <% if booking.booked_from == booking.booked_to %>
+    <p> <%= User.find_by_id(booking.user_id).username %> requested to book the date of: <%= booking.booked_from.split("-").reverse.join("/") %>
+  <% else %>
+    <p> <%= User.find_by_id(booking.user_id).username %> requested to book the dates: <%= booking.booked_from.split("-").reverse.join("/") %> to <%= booking.booked_to.split('-').reverse.join('/') %>
+  <% end %>
     <br>
     Request made at: <%= booking.created_at.strftime("%k:%M %d/%m/%Y") %></p>
   <% if booking.accepted == nil %>

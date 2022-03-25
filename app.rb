@@ -19,8 +19,36 @@ class Makersbnb < Sinatra::Base
   get '/' do
     @user = User.find_by_id(session[:user_id])
     @space = Space.all
-    p @space
+    @today = Date.today
+    @tomorrow = Date.tomorrow
+    @available_spaces = session[:available_spaces]
     erb :index
+  end
+
+  post '/spaces-by-date' do
+    @requested_dates = (params[:search_from].to_date..params[:search_to].to_date).to_a
+    @available_spaces = Space.pluck(:id)
+    Booking.where(accepted: true).each do |booking|
+      @taken_dates = (booking.booked_from.to_date..booking.booked_to.to_date).to_a
+      conflict = false
+      @requested_dates.each do |date|
+        if @taken_dates.include?(date)
+          conflict = true
+        end
+      end
+      if conflict == true
+        @available_spaces.delete(booking.space_id)
+      end
+    end
+
+    session[:available_spaces] = @available_spaces
+
+    redirect '/'
+  end
+
+  post '/clear-search' do
+    session.delete(:available_spaces)
+    redirect '/'
   end
 
   post '/sign-up' do
