@@ -4,16 +4,28 @@
 </head>
 
 <header>
-  <img class ="logo" src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="70" height="57">
+  <a href = "/" class ="logo"> <img src="https://drive.google.com/uc?export=view&id=1UrxSj1DB0vrV_EgV_uVTbRARDo8HuA0g" alt="logo" width="70" height="57"></a>
 
 <nav>
 
 <ul class = "nav__links">
 
-<li>  
-  <form action = "/log-out" method = 'post'>
-  <input id = "button" type = "submit" value = "Log out" >
+
+
+<li>
+  <div class="dropdown">
+  <button id= 'button' class="dropbtn">My spaces</button>
+  <div class="dropdown-content">
+  
+  <form action = "/my-spaces">
+  <input id= 'button' type = "submit" value = "View my spaces" >
   </form>
+  
+  <form action = "/new-space" method = 'get'>
+    <input id= 'button' type = "submit" value = "List a Space" >
+  </form>
+  </div>
+</div>
 </li>
 <li>
   <form action="/about" method="get">
@@ -21,22 +33,15 @@
   </form>
 </li>
 <li>
-  <div class="dropdown">
-  <button class="dropbtn">My spaces</button>
-  <div class="dropdown-content">
-  <form action = "/my-spaces">
-  <input type = "submit" value = "View my spaces" >
+<form action="/settings" method="get">
+    <input id= 'button' type = "submit" value = "Settings">
   </form>
-  <form action = "/new-space" method = 'get'>
-    <input type = "submit" value = "List a Space" >
-  </form>
-  <form action = "/requests" method = 'get'>
-    <input type = "submit" value = "Requests" >
-  </form>
-  </div>
-</div>
 </li>
-
+<li>  
+  <form action = "/log-out" method = 'post'>
+  <input id = "button" type = "submit" value = "Log out" >
+  </form>
+</li>
 </ul>
 
 </nav>

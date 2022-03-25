@@ -62,7 +62,6 @@ background-color: white;
 }
 
 #window {
-  display: flex;
   border: 5px solid black;
   width: 300px;
   height: auto;
