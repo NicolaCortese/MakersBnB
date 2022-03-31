@@ -13,7 +13,7 @@ Makersbnb is a web application in which users can interact with one another list
 
 - You will need
 - An IDE like "VSCode" https://code.visualstudio.com/
-- Ruby vesion manager RBM https://rvm.io/rvm/install
+- Ruby vesion manager RVM https://rvm.io/rvm/install
 
 ### Installing
 
@@ -207,4 +207,4 @@ I want to be able to request to book the bnb
 
 ## Acknowledgments
 
-- Ourselves, we are so cool!
+- Ourselves, it was great to work as a team :D
