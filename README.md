@@ -207,4 +207,4 @@ I want to be able to request to book the bnb
 
 ## Acknowledgments
 
-- Ourselves, it was great to work as a team :D
+- Each other, it was great to work as a team :D
